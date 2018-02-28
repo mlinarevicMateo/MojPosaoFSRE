@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main class="main_position" >
+        <div class="jumbotron my_jumbotron_PregledPrijava">
+            <div class="table-responsive-md">
+                <table class="table">
+                    <h3 class="bottom-pregled">Lista Prijava</h3>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Naslov</th>
+                            <th scope="col">Datum i vrijeme</th>
+                            <th scope="col">Broj prijava</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% if(typeof result != 'undefined' && result.length != 0){ %>
+                      <% for(var i = 0; i < result.length; i++){ %>
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td><%= result[i].naslov %></td>
+                            <td><%= result[i].datum_vrijeme %></td>
+                            <td><%= result[i].count %></td>
+                            <td><a href="/obrisiNatjecaj/<%=result[i].id%>" class="btn btn-primary">Obrisi natjecaj</a></td>
+                            <td><a href="/pogledajPrijave/<%=result[i].id%>" class="btn btn-primary">Pogledaj prijave</a></td>
+
+                        </tr>
+                        <% }}else{ %>
+                          <th scope="row">/</th>
+                          <td>/</td>
+                          <td>/</td>
+                          <td>/</td>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </main>
+    <footer class="footer">
+    <% include ./partials/footer %>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+
+</body>
+
+</html>

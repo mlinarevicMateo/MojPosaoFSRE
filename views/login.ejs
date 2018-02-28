@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MojPosao/login</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+
+<body>
+    <div class="login-dark">
+        <div class="lead text-center pt-5"><a href="/"><b><i class="fas fa-home"></i>  Početna </b></a></div>
+        <form method="post" action="logIn" id="forma-Login">
+            <h2 class="text-center">Login</h2>
+            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="LozinkaLogin" type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+
+            <button class="btn btn-primary btn-block" type="submit">Log In</button>
+          </div>
+            <a href="/registracija" class="forgot">Registrirajte se</a>
+            <span id="spanLoginlozinka" class="spanLozinkeTvrtkaiKorisnik"></span>
+            <% if(typeof netocnaLozinka != 'undefined' && netocnaLozinka){ %>
+            <span class="spanLozinkeTvrtkaiKorisnik">Unesena lozinka nije ispravna!</span>
+            <% } %>
+            <% if(typeof nemaKorisnika != 'undefined' && nemaKorisnika){ %>
+            <span class="spanLozinkeTvrtkaiKorisnik">Korisnik ne postoji u bazi.</span>
+            <% } %>
+        </form>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+
+</body>
+
+</html>

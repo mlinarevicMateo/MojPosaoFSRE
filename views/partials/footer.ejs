@@ -1,0 +1,49 @@
+
+<!--Footer-->
+<footer class="page-footer dark-footer" id="footer-kontakt">
+
+        <!--Footer Links-->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!--First column-->
+                <div class="col-md-6 text-center">
+                    <h5 class="title">Korisnik</h5>
+                    <% if(typeof session == 'undefined'){ %>
+                        <ul class="list-unstyled">
+                            <li><a href="/login"><span class="fas fa-user"></span>  Prijavi se</a></li>
+                            <li><a href="/registracija"><span class="fas fa-user-plus"></span>  Registracija</a></li>
+                        </ul>
+                        <% }else{ %>
+                          <ul class="list-unstyled">
+                              <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>  Odjavi se</a></li>
+                          </ul>
+                        <% } %>
+                </div>
+                <!--/.First column-->
+
+                <!--Second column-->
+                <div class="col-md-6 text-center footer_ul">
+                    <h5 class="title">Menu</h5>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-home"></i>  Početna</a></li>
+                        <li><a href="/#O-nama"><i class="fas fa-question"></i>  O nama</a></li>
+                        <li><a href="/natjecaji/1"><i class="fas fa-list"></i>  Natječaji</a></li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+            </div>
+        </div>
+        <!--/.Footer Links-->
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid text-center">
+                © 2018 Copyright: <a href="#"> MojPosao.com </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->

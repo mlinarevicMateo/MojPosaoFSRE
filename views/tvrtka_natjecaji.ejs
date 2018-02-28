@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main class="main_position" >
+
+        <button id="SviTvrtkiniNatjecaji" class="btn btn-primary NoviNatječaj">Natrag na moje natječaje</button>
+        <div class="jumbotron my_jumbotron_PregledPrijava">
+            <h3>Prijavljene Osobe</h3>
+            <!-- if(ako nema nicega )
+            <div class="neamPrijavljenih">
+            <h2>Nema prijavljenih kandidata</h2>
+            </div>
+            -->
+            <ul class="list-group">
+                    <li class="list-group-item text-left"><p class="text-muted">Ime i Prezime</p><a href="">Matejsssssssssssss Pilekić</a></li>
+                    <li class="list-group-item text-left"><p class="text-muted">Ime i Prezime</p><a href="">Matsssssssejsssss Psssssssilekić</a></li>
+                    <li class="list-group-item text-left"><p class="text-muted">Ime i Prezime</p><a href="">Matedddddj Pilekić</a></li>
+                    <li class="list-group-item text-left"><p class="text-muted">Ime i Prezime</p><a href="">Matej Pilekić</a></li>
+                    <li class="list-group-item text-left"><p class="text-muted">Ime i Prezime</p><a href="">Matej Pilekić</a></li>
+            </ul>
+
+        </div>
+
+    </main>
+    <footer class="footer footer-natjecaji">
+    <% include ./partials/footer %>
+    </footer>
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<nav class="navbar navbar-light navbar-expand-lg navigation-clean-button nav_bg">
+    <div class="container-fluid"><a class="navbar-brand text-white" href="#">MojPosao </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse flex-md-wrap-reverse" id="navcol-1">
+            <ul class="nav navbar-nav mr-auto nav_position">
+                <li class="nav-item"><a class="nav-link a_color" href="/"><i class="fas fa-home"></i>  Početna </a></li>
+                <li class="nav-item"><a class="nav-link" href="/#O-nama"><i class="fas fa-question"></i>  O nama</a></li>
+                <li class="nav-item"><a class="nav-link" href="/natjecaji/1"><i class="fas fa-list"></i>  Natječaji </a></li>
+            </ul>
+            <span class="navbar-text actions">
+              <% if(typeof session == 'undefined'){ %>
+                <a class="btn btn-dark  btn_margin" href="/login" id="buttonLogin"><span class="fas fa-user"></span> Login</a>
+                <a class="btn btn-dark" role="button" href="/registracija" id="buttonRegistracija"><span class="fas fa-user-plus"></span>
+
+Registracija </a>
+                <% }else{ %>
+                  <div id="dropdown" class="ddmenu">
+                    <span class="thumb-myProfil" style="background-image: url('/img/uploads/<%=session.slika%>');border:none; display:inline;margin-right:0.5em; height:1.5em; width:1.5em; border-radius:0.75em; overflow:hidden;">  </span>
+                    <h5 style="display:inline">Dobrodošli, <b><% if(session.korisnik){ %>
+                      <%= session.ime %>
+                      <% }else{ %>
+                      <%= session.ime %>
+                      <% } %> </b> ▼
+                    </h5>
+                    <ul>
+                      <% if(session.tvrtka){ %>
+                      <li><a href="/mojProfilTvrtka" id="mojProfilTvrtka"><i class="fas fa-address-card"></i>  Moj Profil</a></li>
+                      <li><a href="/mojiNatjecaji" id="mojiNatjecaji"><i class="fas fa-list"></i>  Moji natječaji</a></li>
+                      <% }else if(session.korisnik){ %>
+                        <li><a href="/mojProfilKorisnik" id="mojProfilKorisnik"><i class="fas fa-address-card"></i>  Moj Profil</a></li>
+                        <li><a href="/mojePrijave" id="mojePrijave"><i class="fas fa-list"></i>  Moje prijave</a></li>
+                      <% }else if(session.admin){ %>
+                        <li><a href="/adminPanel" id="adminPanel"><i class="fas fa-user-secret"></i>  Admin Panel</a></li>
+                        <li><a href="/mojProfilKorisnik" id="mojProfilKorisnik"><i class="fas fa-address-card"></i>  Moj Profil</a></li>
+                      <% } %>
+                      <li><a href="/logout" id="odjava"><i class="fas fa-sign-out-alt"></i>  Log Out</a></li>
+                    </ul>
+                  </div>
+                <% } %>
+            </span>
+        </div>
+    </div>
+</nav>
+<!--
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">MojPosao</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Pocetna</a></li>
+        <li><a href="/natjecaji/1">Natjecaji</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/registracija"><span class="glyphicon glyphicon-user"></span> Registriraj se</a></li>
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Prijavi se</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+-->

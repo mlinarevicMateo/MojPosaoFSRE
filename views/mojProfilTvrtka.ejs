@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main class="main_position main_myProfil_position" >
+        <div class="container con_position">
+            <div class="row myColor">
+                    <div class="col-md-12 ">
+                      <div class="job-list job-list-myProfil">
+                        <form action="/upload" class="mb-2" method="POST" enctype="multipart/form-data">
+                            <div class="thumb-myProfil" style="background-image: url('/img/uploads/<%=session.slika%>')">
+                              <label class="btn btn-info input-photo btn-file">
+                                <i class="far fa-file-image"></i>  Odaberi sliku <input id="input_P" class="input-photo" type="file" style="display:none;" name="profile_photo" required="" capture>
+                              </label>
+                                <button id="button_P" class="input-photo btn btn-success" type="submit" ><i class="far fa-save"></i>  Spremi</button>
+                            </div>
+
+                        </form>
+                        <div class="job-list-content text-left">
+                          <h4><%= session.ime %></h4>
+                          <h6>Adresa : <span class="span-myprofil text-white"><%= session.adresa %></span></h6>
+                          <h6>Mjesto : <span class="span-myprofil text-white"><%= session.mjesto %></span></h6>
+                          <h6>E-mail : <span class="span-myprofil text-white"><%= session.email %></span></h6>
+                          <h6>Kontakt telefon : <span class="span-myprofil text-white"><%= session.kontakt_telefon %></span></h6>
+                          <div class="job-tag">
+                              <div class="floatRight">
+                                    <a class="btn btn-primary mb-1" id="Uredi"><i class="fas fa-edit"></i>  Uredi profil</a>
+                                    <a class="btn btn-primary" id="PromijenuLozinku"><i class="fas fa-unlock-alt"></i>  Promijeni lozinku</a>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <% if(typeof neispravnaStaraLozinka != 'undefined' && neispravnaStaraLozinka){ %>
+                        <span class="spanLozinkeTvrtkaiKorisnik">Unesena stara lozinka nije ispravna, lozinka nije promjenjena!</span>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+        <form action="/urediProfilTvrtka" method="post">
+            <div id="UrediProfil" class="container con_position myColor sakrij">
+                <div class="job-list job-list-myProfil">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12"><h6>Naziv*</h6> <input type="text" name="naziv" placeholder="Naziv" value="<%= session.ime %>"></div>
+                    <div class="col-md-6 col-xs-12"><h6>Adresa*</h6> <input type="text" name="adresa" placeholder="Adresa" value="<%= session.adresa %>"></div>
+
+                    <div class="col-md-6 col-xs-12"><h6>Mjesto*</h6> <input type="text" name="mjesto" placeholder="Mjesto" value="<%= session.mjesto %>"></div>
+                    <div class="col-md-6 col-xs-12"><h6>Kontakt telefon*</h6><input type="text" name="kontakt_telefon" placeholder="Kontakt telefon" value="<%= session.kontakt_telefon %>"></div>
+                </div>
+                <div class="job-tag">
+                    <div class="floatRight">
+                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i>  Spremi</button>
+                        <a href="" class="btn btn-primary"><i class="fas fa-times"></i>  Odustani</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <form action="/promijeniLozinkuTvrtka" method="post" id="forma-korisnik-promjenaLozinke">
+            <div id="UrediLozinku" class="container con_position myColor sakrij">
+                <div class="job-list job-list-myProfil">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Stara lozinka</label>
+                      <input type="password" class="form-control" name="staraLozinka" placeholder="Stara lozinka" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Nova lozinka</label>
+                      <input type="password" class="form-control" name="novaLozinka" id="NovaLozinkaKorisnik" placeholder="Nova lozinka" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Ponovi lozinku</label>
+                      <input type="password" class="form-control" name="novaLozinkaPon" id="PonoviNovaLozinkaKorisnik" placeholder="Ponovi lozinku" required>
+                    </div>
+                    <div class="job-tag">
+                        <span id="spanLozinkeKorisnik" class="spanLozinkeTvrtkaiKorisnik"></span>
+                        <div class="floatRight">
+                            <button type="submit" class="btn btn-primary"><i class="far fa-save"></i>  Spremi</button>
+                            <a href="" class="btn btn-primary"><i class="fas fa-times"></i>  Odustani</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+    <footer class="footer">
+    <% include ./partials/footer %>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+
+</body>
+
+</html>

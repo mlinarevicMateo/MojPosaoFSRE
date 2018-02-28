@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main class="main_position main-natjecaji-height" id="main" >
+      <% if(typeof session !== 'undefined' && session.tvrtka){ %>
+      <button id="NoviNatjecajbutton" class="btn btn-primary NoviNatječaj"><i class="fas fa-plus"></i>  Dodaj natječaj</button>
+      <div id="NoviNatjecaj" class="container con_position sakrij">
+        <div class="row myColor">
+          <div class="col-md-12 ">
+            <div class="job-list job-list-myProfil">
+              <div class="thumb" style="background-image: url('/img/uploads/<%= session.slika %>')">
+              </div>
+              <div class="job-list-content text-left">
+                <form action="/dodajNatjecaj" method="post">
+                  <h4><input class="inputNoviNatjecaj" type="text" name="ImeNaslova" placeholder="Unesite ime natječaja"></h4>
+                  <p>
+                    <div class="form-group">
+                      <label for="exampleTextarea">Unesite opis natječaja</label>
+                      <textarea class="form-control" id="exampleTextarea" name="text_natjecaja"rows="3"></textarea>
+                    </div>
+                  </p>
+                  <div class="job-tag">
+                    <div class="meta-tag">
+                      <span><img src="../img/map-marker.png" class="lokacija"/><%= session.mjesto%></span>
+                      <span>Objavio: <% if(session.admin){ %> MojPosaoAdministrator <% }else{ %> <%= session.ime %> <% } %></span>
+                    </div>
+                    <div class="floatRight">
+                      <button type="submit" class="btn btn-primary"><i class="far fa-save"></i>  Spremi</button>
+                      <button type="button" class="btn btn-primary" id="OdustaniNoviNatjecaj"><i class="fas fa-times"></i>  Odustani</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+     </div>
+     <% } %>
+      <% for(let i = 0; i < result.length; i++){ %>
+        <div class="container con_position">
+            <div class="row myColor">
+                    <div class="col-md-12 ">
+                      <div class="job-list">
+                        <div class="thumb" style="background-image: url('/img/uploads/<%= result[i].slika %>')">
+                        </div>
+                        <div class="job-list-content text-left">
+                          <h4><%= result[i].naslov %></h4>
+                          <p><%= result[i].text_natjecaja %></p>
+                          <div class="job-tag">
+                              <div class="meta-tag">
+                                <span><i class="fas fa-map-marker-alt"></i>  <% if(result[i].mjesto != null){ %><%=result[i].mjesto%><% }else{ %> Nedefinirano <% } %></span>
+                                <span><i class="far fa-building"></i>  <%= result[i].naziv %></span>
+                                <span><i class="far fa-calendar-alt"></i>  <%= result[i].datum_vrijeme %></span>
+                              </div>
+                              <div class="floatRight">
+                                <% if(typeof session === 'undefined'){ %>
+                                    <a href="/login" class="btn btn-primary"><i class="fas fa-plus"></i>  Prijavi se</a>
+                                <% }else{ %>
+                                    <% if(session.korisnik){ %>
+                                        <% if(prijave.indexOf(result[i].id) === -1){ %>
+                                          <a class="btn btn-primary" href="/prijaviSe/<%=result[i].id%>"><i class="far fa-plus-square"></i>  Prijavi se</a>
+                                        <% }else{ %>
+                                          <a class="btn btn-primary" href="/odjaviSe/<%=result[i].id%>"><i class="fas fa-times"></i>  Odjavi se</a>
+                                        <% } %>
+                                    <%}else if(session.tvrtka){ %>
+                                      <% if(session.email === result[i].email){ %>
+                                      <a href="/obrisiNatjecaj/<%=result[i].id%>" class="btn btn-primary"><i class="fas fa-times"></i>  Obrisi natjecaj</a>
+                                      <% } %>
+                                    <% }else if(session.admin){ %>
+                                      <a href="/obrisiNatjecaj/<%=result[i].id%>" class="btn btn-primary"><i class="fas fa-times"></i>  Obrisi natjecaj</a>
+                                    <% } %>
+                                <% } %>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+                <div class="container pagination-margin">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 py-5 d-flex">
+                    <ul class="pagination mx-auto">
+                        <% for(j = 0; j < parseInt(count/10)+1; j++){ %>
+                        <li class="page-item"><a class="page-link" href="/natjecaji/<%=j+1%>"> <%= j+1 %></a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer footer-natjecaji">
+    <% include ./partials/footer %>
+    </footer>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.js"></script>
+
+</body>
+
+</html>

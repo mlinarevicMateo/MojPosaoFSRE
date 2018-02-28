@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <% include ./partials/head %>
+    </head>
+
+<body>
+    <header>
+        <% include ./partials/header %>
+    </header>
+    <main class="main_position " >
+        <div class="container con_position">
+            <div class="row myColor">
+                <div class="col-md-12 ">
+                    <div class="job-list job-list-myProfil">
+                        <form action="/upload"  method="POST" enctype="multipart/form-data">
+                            <div class="thumb-myProfil" style="background-image: url('/img/uploads/<%=session.slika%>')">
+                              <label class="btn btn-info input-photo btn-file">
+                                <i class="far fa-file-image"></i>  Odaberi sliku <input id="input_P" class="input-photo" type="file" style="display:none;" name="profile_photo" required="" capture>
+                              </label>
+                                <button id="button_P" class="input-photo btn btn-success" type="submit" ><i class="far fa-save"></i>  Spremi</button>
+                            </div>
+
+                        </form>
+                        <!-- <br><br> -->
+                        <div class="job-list-content text-left">
+                            <h4>  <%= session.ime %> <%= session.prezime %> </h4>
+                            <h6>Adresa : <span class="span-myprofil text-white"><%= session.adresa %></span></h6>
+                            <h6>Mjesto : <span class="span-myprofil text-white"><%= session.mjesto %></span></h6>
+                            <h6>E-mail : <span class="span-myprofil text-white"><%= session.email %></span></h6>
+                            <h6>Stručna sprema : <span class="span-myprofil text-white"><%= session.strucna_sprema %></span></h6>
+                            <h6>Godina rođenja : <span class="span-myprofil text-white"><%= session.godina_rodjenja %></span></h6>
+                            <h6>Spol : <span class="span-myprofil text-white"><%= session.spol %></span></h6>
+                            <h6>Kontakt telefon : <span class="span-myprofil text-white"><%= session.kontakt_telefon %></span></h6>
+                            <div class="job-tag">
+                                <div class="floatRight">
+                                    <a class="btn btn-primary mb-1" id="Uredi"><i class="fas fa-edit"></i>  Uredi profil</a>
+                                    <a class="btn btn-primary" id="PromijenuLozinku"><i class="fas fa-unlock-alt"></i>  Promijeni lozinku</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% if(typeof neispravnaStaraLozinka != 'undefined' && neispravnaStaraLozinka){ %>
+                      <span class="spanLozinkeTvrtkaiKorisnik">Unesena stara lozinka nije ispravna, lozinka nije promjenjena!</span>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <form action="/urediProfilKorisnik" method="post">
+            <div id="UrediProfil" class="container con_position myColor sakrij">
+                <div class="job-list job-list-myProfil">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Ime</label>
+                            <input type="text" class="form-control" name="ime" placeholder="Ime" value="<%= session.ime %>">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Prezime</label>
+                            <input type="text" class="form-control" name="prezime" placeholder="Prezime" value="<%= session.prezime %>">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputSpol">Spol</label>
+                            <select class="form-control" name="spol">
+                                <option><%= session.spol %></option>
+                                <option>Muški</option>
+                                <option>Ženski</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputDatum">Datum rođenja</label>
+                            <input type="text" class="form-control" name="datum_rodjenja" placeholder="28-10-1996" value="<%= session.godina_rodjenja %>">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Addresa</label>
+                            <input type="text" class="form-control" name="adresa" placeholder="Fra Didaka Buntića 111" value="<%= session.adresa %>">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputMjesto">Mjesto</label>
+                            <input type="text" class="form-control" name="mjesto" placeholder="Mostar" value="<%= session.mjesto %>">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputSpol">Stručna sprema</label>
+                            <select class="form-control" name="strucna_sprema">
+                                <option><%= session.strucna_sprema %></option>
+                                <option>Srednja stručna sprema</option>
+                                <option>Viša stručna sprema</option>
+                                <option>Visoka stručna sprmea</option>
+                                <option>Magistar struke</option>
+                                <option>Doktor</option>
+                            </select>
+                        </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputNaziv">Naziv obrazobvanja</label>
+                        <input type="text" class="form-control" name="naziv_obrazovanja" placeholder="Srednja strukovna skola" value="<%= session.naziv_obrazovanja %>">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputKontakt">Kontakt telefon (format: xxx/xxx-xxx):</label>
+                        <input type="tel" pattern="^\d{3}/\d{3}-\d{3}$" class="form-control" name="kontakt_telefon" placeholder="Kontakt telefon" value="<%= session.kontakt_telefon %>">
+                    </div>
+                    <div class="job-tag">
+                        <div class="floatRight">
+                            <button type="submit" class="btn btn-primary"><i class="far fa-save"></i>  Spremi</button>
+                            <a href="" class="btn btn-primary"><i class="fas fa-times"></i>  Odustani</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="/promijeniLozinkuKorisnik" method="post" id="forma-korisnik-promjenaLozinke">
+            <div id="UrediLozinku" class="container con_position myColor sakrij">
+                <div class="job-list job-list-myProfil">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Stara lozinka</label>
+                      <input type="password" class="form-control" name="staraLozinka" placeholder="Stara lozinka" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Nova lozinka</label>
+                      <input type="password" class="form-control" name="novaLozinka" id="NovaLozinkaKorisnik" placeholder="Nova lozinka" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Ponovi lozinku</label>
+                      <input type="password" class="form-control" name="novaLozinkaPon" id="PonoviNovaLozinkaKorisnik" placeholder="Ponovi lozinku" required>
+                    </div>
+                    <div class="job-tag">
+                        <span id="spanLozinkeKorisnik" class="spanLozinkeTvrtkaiKorisnik"></span>
+                        <div class="floatRight">
+                            <button type="submit" class="btn btn-primary"><i class="far fa-save"></i>  Spremi</button>
+                            <a href="" class="btn btn-primary"><i class="fas fa-times"></i>  Odustani</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+    <footer class="footer">
+        <% include ./partials/footer %>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+
+</body>
+
+</html>

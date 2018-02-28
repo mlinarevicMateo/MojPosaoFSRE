@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main class="main_position" >
+        <div class="jumbotron my_jumbotron_PregledPrijava">
+
+            <!-- if(ako nema nicega )
+            <div class="neamPrijavljenih">
+            <h2>Nema prijavljenih kandidata</h2>
+            </div>
+            -->
+            <div class="table-responsive-md">
+                <table class="table">
+                    <h3 class="bottom-pregled">Lista Prijava</h3>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Naziv firme</th>
+                            <th scope="col">Natječaj</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% if(typeof result != 'undefined' && result.length != 0){ %>
+                      <% for(var i = 0; i < result.length; i++){ %>
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td><%= result[i].naziv %></td>
+                            <td><%= result[i].naslov %></td>
+                            <td><a class="btn btn-primary" href="/odjaviSe/<%=result[i].nid%>">Odjavi se</a></td>
+                        </tr>
+                      <% }}else{ %>
+                        <th scope="row">/</th>
+                        <td>/</td>
+                        <td>/</td>
+                      <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </main>
+    <footer class="footer">
+    <% include ./partials/footer %>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+
+</body>
+
+</html>

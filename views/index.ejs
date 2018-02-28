@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main class="main_position index_main" >
+
+        <div class="my_jumbotron">
+            <h1>Dobro došli</h1>
+            <p class="lead text-center p_position">Stranica MojPosao ima za cilj da vam da na pregled otvorene natječaje koje su postavile tvrtke i poslovni objekti. Želimo vam svu sreću pri traženju posla.</p>
+            <p><a class="btn btn-primary" role="button" href="/natjecaji/1">Dalje <i class="fas fa-arrow-circle-right"></i></a></p>
+        </div>
+
+    </main>
+    <section class="O_nama text-center" id="O-nama">
+        <div class="frame_Onama">
+            <h2>O nama</h2>
+        <p class="text-justify">
+            Ipak, jednom kada počnete pričati, shvaćate da nemate ništa posebno za reći stoga, što zapravo poslodavac želi čuti? Odakle početi? Kako sažeti godine iskustva i sjećanja u jedan odgovor?
+            Najbolji način da odgovorite na ovo pitanje je da ga najprije preokrenete. Umjesto da se pitate što poslodavac želi čuti, prvo definirajte što ne želi čuti.
+            Ne žele čuti ništa o vašoj srednjoj školi, ljubavnom životu, trenutnom obiteljskom životu ili prijateljima.
+            Žele čuti sve o kvalitetama koje imate i koje su u izravnoj vezi s radnom pozicijom za koju traže idealnog kandidata.
+            Žele znati o svakom vašem radnom iskustvu koje se odnosi na posao za koji ste se prijavili.
+            U suštini, žele znati hoćete li se uklopiti u njihovu tvrtku!
+        </p>
+        <h4>Vizija</h4>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <a href="/Vizija.pdf" target="_blank">Otvori Vizija.pdf</a>
+          </div>
+        </div>
+        <br><br>
+        <h4>Zanimaju vas testni podatci?</h4>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <p>Testni podatci korisnik</p>
+                <p>email : korisnik@test.com</p>
+                <p>lozinka : test123</p>
+            </div>
+            <div class="col-md-4">
+                <p>Testni podatci tvrtka</p>
+                <p>email : tvrtka@test.com</p>
+                <p>lozinka : test123</p>
+            </div>
+            <div class="col-md-4">
+                <p>Testni podatci admin</p>
+                <p>email : admin@test.com</p>
+                <p>lozinka : test123</p>
+            </div>
+        </div><br><br>
+          <h4 class="text-center">Koje smo tehnologije koristili?</h4><br>
+        <div class="jumbotron">
+            <ul class="list-group text-left">
+                    <li class="list-group-item listmyColor"><a><img src="/img/html.png" alt="" class="icons_onama"> HTML </a> - Osnovna struktura i izgled stranice</li>
+                    <li class="list-group-item listmyColor"><a><img src="/img/css-3.svg" alt="" class="icons_onama">CSS </a> - Osnovni dizajn stranice</li>
+                    <li class="list-group-item listmyColor"><a><img src="/img/js.png" alt="" class="icons_onama">JavaScript </a> - Dodatne funkcionalnosti</li>
+                    <li class="list-group-item listmyColor"><a><img src="/img/jqr.png" alt="" class="icons_onama">Jquery </a> - Dodatne funkcionalnosti</li>
+                    <li class="list-group-item listmyColor"><a><img src="/img/bs.png" alt="" class="icons_onama">Bootstrap </a> - Respozivnost stranice</li>
+                    <li class="list-group-item listmyColor"><a><img src="/img/nodejs.png" alt="" class="icons_onama">Node.js </a> - Serverski JavaScript</li>
+                    <li class="list-group-item listmyColor"><a><img src="/img/sql.png" alt="" class="icons_onama">MySql </a> - Kreiranje i rad s bazom</li>
+                    <li class="list-group-item listmyColor"><a><img src="/img/exp.png" alt="" class="icons_onama">ExpressJS </a> - Rute, contolleri i ostalo</li>
+            </ul>
+
+        </div>
+        <br>
+        <h4 class="text-center">Gdje nas možete pronaći?</h4><br>
+        <div id="map" class="jumbotron form-control mb-5" style="margin:0 auto; width:100%;height:60vh">
+          <br><br>
+        </div>
+    </section>
+    <footer class="footer">
+    <% include ./partials/footer %>
+    </footer>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSsIfs1OLRHEKmwjvovtH-B7wbJ4l4MHI"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script>
+    $(function () {
+
+  function initMap() {
+
+      var location = new google.maps.LatLng(43.34593714, 17.79665264);
+
+      var mapCanvas = document.getElementById('map');
+      var mapOptions = {
+          center: location,
+          zoom: 16,
+          panControl: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(mapCanvas, mapOptions);
+
+      var markerImage = '/img/html.png';
+
+      var marker = new google.maps.Marker({
+          position: location,
+          animation: google.maps.Animation.DROP,
+          map: map
+      });
+
+      var contentString = '<div class="info-window">' +
+              '<h6>Fakultet strojarstva računarstva i elektrotehnike</h6>' +
+              '<div class="info-content">' +
+              '<p>Fakultet strojarstva računarstva i elektrotehnike, Matice hrvatske <br> Mostar 88000 <br> Bosnia and Herzegovina</p>' +
+              '</div>' +
+              '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200,
+          maxHeight: 400
+      });
+      marker.addListener('click', function () {
+          infowindow.open(map, marker);
+      });
+
+
+  }
+
+  google.maps.event.addDomListener(window, 'load', initMap);
+});
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registracija</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+
+<body>
+    <div class="login-dark">
+      <div class="lead text-center pt-1"><a href="/"><b><i class="fas fa-home"></i>  Početna </b></a></div>
+        <form method="post" id="form1" action="/registerKorisnik">
+            <h2 class="text-center" style="margin:0 0 1em 0;">Registracija </h2>
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item"><a class="nav-link active buttonRegKor">Korisnik </a></li>
+                <li class="nav-item"><a class="nav-link buttonRegTvr">Tvrtka </a></li>
+            </ul>
+            <div class="form-group" id="divRegKor" style="margin:1em auto;">
+                <input id="ImeReg" class="form-control" type="text" name="ime" placeholder="Ime" pattern=".{3,}" title="Najmanje 3 slova" value="<% if(typeof podaci != 'undefined'){%><%= podaci.ime %> <%}%>" required>
+                <input class="form-control styleLoginRegistracija" type="text" name="prezime" pattern=".{3,}" title="Najmanje 3 slova" value="<% if(typeof podaci != 'undefined'){%><%= podaci.prezime %> <%}%>" placeholder="Prezime" required/>
+                <input class="form-control styleLoginRegistracija" type="email" name="email"  placeholder="Email" value="<% if(typeof podaci != 'undefined'){%><%= podaci.email %> <%}%>"required>
+                <input id="LozinkaKorisnikRegistracija" class="form-control styleLoginRegistracija" type="password" name="lozinka" placeholder="Lozinka" required>
+                <input id="PonovljenaLozinkaRegistracijaK" class="form-control styleLoginRegistracija" type="password" name="lozinkaPon"  placeholder="Ponovi lozinku" required>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Register </button>
+                    <br><a href="/login" class="forgot">Prijavi se</a>
+                    <span id="spanRegistracijalozinka" class="spanLozinkeTvrtkaiKorisnik text-center"></span>
+                    <% if(typeof korisnikPostoji != 'undefined' && korisnikPostoji == true){ %>
+                    <span class="spanLozinkeTvrtkaiKorisnik">Uneseni email je već zauzet!</span>
+                    <% } %>
+                </div>
+            </div>
+        </form>
+        <form method="post" id="form2" action="/registerTvrtka">
+            <h2 class="text-center" style="margin:0 0 1em 0;">Registracija </h2>
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item"><a class="nav-link active buttonRegKor">Korisnik </a></li>
+                <li class="nav-item"><a class="nav-link buttonRegTvr">Tvrtka </a></li>
+            </ul>
+        <div class="form-group" id="divRegTvr" style="margin:1em auto;">
+            <input class="form-control " type="text"  name="naziv" placeholder="Naziv tvrtke" pattern=".{3,}" title="Najmanje 3 slova" required />
+            <input class="form-control styleLoginRegistracija" type="email" name="email" placeholder="Email" required>
+            <input class="form-control styleLoginRegistracija" type="tel"  name="brojTelefona" placeholder="Broj telefona XXX/XXX-XXX" pattern="^\d{3}/\d{3}-\d{3}$" required/>
+            <input id="LozinkaTvrtkaRegistracija" class="form-control styleLoginRegistracija" type="password" name="lozinka"  placeholder="Lozinka" required>
+            <input id="PonovljenaLozinkaRegistracijaT" class="form-control styleLoginRegistracija" type="password" name="lozinkaPon"  placeholder="Ponovi lozinku" required>
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" type="submit">Register </button>
+              <br><a href="/login" class="forgot">Prijavi se</a>
+              <span id="spanRegistracijalozinka" class="spanLozinkeTvrtkaiKorisnik text-center"></span>
+              <% if(typeof korisnikPostoji != 'undefined' && korisnikPostoji == true){ %>
+              <span class="spanLozinkeTvrtkaiKorisnik">Uneseni email je već zauzet!</span>
+              <% } %>
+            </div>
+        </div>
+      </form>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ./partials/head %>
+</head>
+
+<body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <main class="main_position" >
+        <div class="jumbotron my_jumbotron_PregledPrijava">
+            <div class="table-responsive-md">
+                <table class="table">
+                    <h3 class="bottom-pregled">Lista Prijava</h3>
+                    <thead>
+                        <tr>
+                            <th scope="col">Korisnik</th>
+                            <th scope="col">Ime</th>
+                            <th scope="col">Prezime</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Obrazovanje</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% if(typeof result != 'undefined' && result.length != 0){ %>
+                      <% for(var i = 0; i < result.length; i++){ %>
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td><%= result[i].ime %></td>
+                            <td><%= result[i].prezime %></td>
+                            <td><%= result[i].email %></a></td>
+                            <td><%= result[i].naziv_obrazovanja %></a></td>
+                            <td><a href="mailto:<%=result[i].email%>?Subject=Odgovor%20na%20Vašu%20prijavu." target="_top">Kontaktiraj</a></td>
+                        </tr>
+                      <% }}else{ %>
+                        <th scope="row">/</th>
+                        <td>/</td>
+                        <td>/</td>
+                      <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </main>
+    <footer class="footer">
+    <% include ./partials/footer %>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+
+</body>
+
+</html>
